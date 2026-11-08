@@ -1,44 +1,42 @@
-# P2PTransfer - Windows x64
+# P2P File Transfer
 
-Basit, konsol tabanli TCP dosya aktarim prototipi.
+A simple peer-to-peer file transfer tool for Windows, written in C++.
 
-## Gereksinimler
-- Windows 10/11 x64
-- Visual Studio 2022 veya Visual Studio Build Tools
-- Desktop development with C++ (MSVC)
+Transfer files and folders directly between two computers over TCP.
 
-## Derleme
-1. `x64 Native Tools Command Prompt for VS 2022` acin.
-2. Bu klasore gidin.
-3. `build_release.bat` dosyasini calistirin.
+## Features
 
-Derleme basarili olursa `P2PTransfer.exe` olusur.
+- Direct file and folder transfers
+- AES-256-GCM encryption
+- Transfer speed and progress display
+- Folder structure preservation
+- No cloud storage required
 
-## Kullanma
-Server bilgisayarinda:
-    P2PTransfer.exe server
+## Requirements
 
-Client bilgisayarinda:
-    P2PTransfer.exe client 192.168.1.25
+- Windows 10/11
+- Visual Studio 2022
+- C++17
 
-Dosya gondermek:
-    /send "C:\Users\Kullanici\Desktop\ornek.zip"
+## Build
 
-Cikis:
-    /quit
+Run `build_release.bat` to compile the application.
 
-Alinan dosyalar calisma klasorundeki `received` klasorune kaydedilir.
+## Usage
 
-## LAN / WAN
-- LAN: Server bilgisayarinin `ipconfig` ciktisindaki IPv4 adresini kullanin.
-- WAN: Iki bilgisayari ayni Tailscale agina ekleyip server'in Tailscale IPv4 adresini kullanin.
-- Windows Firewall'da TCP 5000 icin izin gerekebilir.
-- Router uzerinden portu dogrudan internete acmayin.
+1. Start the app on both computers.
+2. Select Server on one computer.
+3. Connect from the other using the server's IP address.
+4. Use the following commands:
 
-## ONEMLI GUVENLIK UYARISI
-Bu bir ilk prototiptir. Uygulama seviyesinde sifreleme, kimlik dogrulama,
-gonderim onayi ve SHA-256 butunluk kontrolu henuz yoktur. Yalnizca guvendiginiz
-LAN veya VPN aginda test edin. Bilinmeyen kisilerden gelen dosyalari acmayin.
+| Command | Description |
+|---|---|
+| `/send "path"` | Send a file |
+| `/sendfolder "path"` | Send a folder |
+| `/quit` | Disconnect |
 
-Bu paket onceden derlenmis ve test edilmis bir EXE icermiyor; EXE Windows
-uzerinde MSVC ile build_release.bat kullanilarak olusturulur.
+Received files are saved in the `received` folder.
+
+## License
+
+MIT
